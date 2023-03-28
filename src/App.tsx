@@ -15,8 +15,8 @@ type Color = {
 };
 
 export const App: React.FC = () => {
-  const [cars, setCars] = useState<Car[]>(carsFromServer);
-  const [colors, setColors] = useState<Color[]>(colorsFromServer);
+  const [cars] = useState<Car[]>(carsFromServer);
+  const [colors] = useState<Color[]>(colorsFromServer);
   const [filterBrand, setFilterBrand] = useState<string>('');
   const [filterColor, setFilterColor] = useState<number | null>(null);
 
@@ -25,17 +25,22 @@ export const App: React.FC = () => {
   };
 
   const handleColorFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const colorId = parseInt(e.target.value);
+    const colorId = parseInt(e.target.value, 10);
+
     setFilterColor(colorId === 0 ? null : colorId);
   };
 
   const filteredCars = cars.filter(car => {
-    if (filterBrand && car.brand.toLowerCase().indexOf(filterBrand.toLowerCase()) === -1) {
+    if (filterBrand && car
+      .brand.toLowerCase()
+      .indexOf(filterBrand.toLowerCase()) === -1) {
       return false;
     }
+
     if (filterColor && car.colorId !== filterColor) {
       return false;
     }
+
     return true;
   });
 
@@ -71,7 +76,11 @@ export const App: React.FC = () => {
             <tr key={car.id}>
               <td>{car.id}</td>
               <td>{car.brand}</td>
-              <td style={{ color: colors.find(c => c.id === car.colorId)?.name }}>
+              <td style={{
+                color: colors
+                  .find(c => c.id === car.colorId)?.name,
+              }}
+              >
                 {colors.find(c => c.id === car.colorId)?.name}
               </td>
               <td>{car.rentPrice}</td>

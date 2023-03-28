@@ -16,22 +16,23 @@ thead {
   color: white;
 }
 
-thead tr{
-  background-color: #0e3a80;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
 tr {
   background-color: #bbd3fa;
 }
 
+thead tr {
+  background-color: #0e3a80;
+}
+
 tr:nth-child(even) {
   background-color: #7ea6e6;
+}
+
+td,
+th {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 8px;
 }
 
 input {
